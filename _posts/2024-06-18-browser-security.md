@@ -93,3 +93,40 @@ Key CORS headers:
     Access-Control-Expose-Headers: X-Custom-Header
     ```
 
+## Content Security Policy (CSP)
+
+CSP allows web developers to control what resources a webpage loads and executes. CSP reduces the risk of various web vulnerabilities like XSS, CSRF etc. <br>
+It is implemented by setting HTTP headers that define allowed sources for different types of content on web pages.<br>
+Key CSRF policies:
+1. default-src
+    - This policy restricts all content to be loaded only from the same origin
+    ```
+    Content-Security-Policy: default-src 'self'
+    ```
+2. script-src
+    - It defines valid sources for Javascript.
+    - This policy allows JS to be loaded only from the same origin and any other origin mentioned.
+    ```
+    Content-Security-Policy: script-src 'self' https://trusted.cdn.com
+    ```
+3. style-src
+    - It defines valid sources for stylesheets.
+    - This policy allows stylesheets to be loaded only from the same origin and any other origin mentioned.
+    ```
+    Content-Security-Policy: style-src 'self' https://trusted.styles.com
+    ```
+
+## HTTP Strict Transport Security (HSTS)
+
+It is a web security policy that helps protect websites from man-in-the middle attacks such as protocol downgrade and cookie hijacking.<br>
+It makes the web browsers, or other user agents interact with servers using secure HTTPS connections.
+```
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+- `max-age` specifies the time in seconds, that the browser should remember that the site is only accessible over HTTPS.
+- `includeSubDomains` is optional, and if specified, states that the rule applies to the enter domain and all its subdomains.
+- Another optional directive that is used is `preload` which states that the domain should be included in browsers' HSTS preload lists, which means that the domain will be treated as an HSTS host by default.
+
+
+
+If you found this article helpful, consider subscribing to my YouTube channel, [The hacker's room](https://www.youtube.com/@TheHackersRoom) for more insights on web security and other cybersecurity topics. Let's continue learning and improving our security practices together!
