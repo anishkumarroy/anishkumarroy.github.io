@@ -7,14 +7,16 @@ image: /images/anveshanam.png
 ---
 
 > This was a CTF hosted by IIT Jammu in collaboration with DRDO<br>
-> I managed to solve 17 challenges in this CTF, though I can't include the writeups of all the challenges I solved, as they made the challenges inaccessbile just after the CTF ended.
+> I managed to solve 17 challenges in this CTF.
 
 ## CLOUD SECURITY
 
 ### Bucket Breach
+**Challenge Description:**
 
-We were provided with AWS access key and secret access key.<br>
-First of all I did aws configure and started enumeration
+![description](/images/bucket_breach_desc.png)
+
+Found AWS access ID, and secret access key in the above IP.
 ![aws configure](/images/bucket_breach.png)
 
 We can see that there is a bucket - `question1bucket`, and on listing the files in the bucket, I got some interesting looking files.<br>
@@ -30,9 +32,15 @@ Went directly to [cyberchef](https://gchq.github.io/CyberChef/) to decode the bi
 ![](/images/bucket_breach3.png)
 
 ### Version Vortex
+**Challenge Description:**
 
-In this challenge too, we were provided with AWS access key ID and secret access key.<br>
-However the challenge desciption hinted something towards version. I started my enumeration by listing the DB instances in AWS.
+![description](/images/version_vortex_desc.png)
+```plaintext
+Access key ID: AKIASQUTIFWBI5UZN5UF
+Secret access key: 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
+```
+In this challenge too, we are provided with AWS access key ID and secret access key.<br>
+However the challenge desciption hints something towards version. I started my enumeration by listing the DB instances in AWS.
 ![db-instances](/images/version_vortex1.png)
 ![db-instances](/images/version_vortex2.png)
 ![db-instances](/images/version_vortex3.png)
@@ -59,8 +67,16 @@ On decoding the data using Cyberchef, got the flag-
 ![url](/images/version_vortex9.png)
 
 ### Stealth Secret
+**Challenge Description:**
 
-Again we were given AWS access key, and secret access key. The challenge description hinted to look for some sort of secret.
+![description](/images/stealth_secret_desc.png)
+```plaintext
+Access key ID: AKIATOHGMZD4XCBX2EAF
+Secret access key: 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
+Region: Mumbai
+```
+
+Again we are given AWS access key, and secret access key. The challenge description hints to look for some sort of secret.
 Firstly I tried to list buckets, but it says access denied. 
 Then I tried to list secrets, but for that too, we didn't have access.<br>
 Then Listed all the IAM users -
@@ -84,5 +100,91 @@ Checking the source code, found AWS credentials, so configured AWS using those c
 ![configure](/images/7.png)
 
 Now, for this user, I was able to list the secrets. Found an interesting secret and on getting the secret value, found the flag.
-![secret](/images/flag.png)
+![secret](/images/secret_flag.png)
 
+### Minute-mystery
+**Challenge Description:**
+
+![desc](/images/minute_mystery_desc.png)
+```plaintext
+DockerImage: cyberseciitjammu/minute-mystery:lts
+```
+Pulled the docker image into my kali machine, and tried to run it.<br>
+![docker](/images/minute_mystery1.png)
+But it exitted without starting properly. 
+I restarted the docker container and then used `docker exec` to run a new process inside the running container.<br>
+I got a flag, which was not the actual flag.
+![fake_flag](/images/fake_flag.png)
+I then looked further, and found some SQL credentials, which looked interesting
+![flag](/images/minute_mystery2.png)
+Then I decoded the hex value, and got the flag - 
+![actualflag](/images/minute_mystery_flag.png)
+
+
+## WEB
+
+### Easy-web
+**Challenge Description:**
+
+![desc](/images/easy_web_desc.png)
+
+On visiting the webpage, we have a Marquee text that says - ` My friend only loves to solve **hard-web** challenges. Anything else would give him bad time!`
+
+![web](/images/easy_web_text.png)
+There was nothing else on the webpage. On looking at the cookie, it was base64 encoded - 
+![cookie](/images/easy_web-cookie.png)
+Changed the cookie with `hard-web` value, and base64 encoded it. After reloading the page, got the flag.
+![flag](/images/easy_web_flag.png)
+
+
+### Newdevblog
+**Challenge Description:**
+
+![desc](/images/desc.png)
+
+We are given a website with a search feature.<br>
+On testing the search functionality, I found it to be vulnerable to reflected XXS, and Server Side Template Injection<br>
+![detection](/images/detection.png)
+Assuming that the name of the flag file is `flag.txt`, we can try to leverage SSTI to get the contents of the flag. 
+Wappalyzer shows that it is made on Python's Flask.
+We can use multiple payloads to get the contents of `flag.txt` leveraging different functions of flask.<br>
+Payload:
+{% raw %} 
+```python
+{{get_flashed_messages.__globals__.__builtins__.open('/etc/passwd').read()}}
+```
+{% endraw %}
+
+`get_flashed_messages` is a common Flask function used to retrieve messages flashed in the session.<br>
+`__globals__` gives access to global namespace <br>
+`__builtins__` gives access to builtin python functions such as `open`
+![flag](/images/flag1.png)
+We can also use the `os` library to cat out the contents of flag.txt file - 
+![another flag](/images/flag.png)
+
+### Whitelist2Solve
+**Challenge Description:**
+
+![desc](/images/whitelist2solve_desc.png)
+
+I have created a video on this challenge. You can check it out here - 
+
+
+## FORENSICS
+
+### recycleBF
+**Challenge Description:**
+
+![desc](/images/recyclebf_desc.png)
+
+You can access the challenge files [here](https://github.com/anishkumarroy/AnveshanamCTF_files/tree/master/forensics/recycleBF)<br>
+On Unzipping the `RBF.zip` file, found an `INFO2` file.
+![unzip](/images/unzip.png)
+Checking the file type it says - `INFO2: Windows Recycle Bin INFO2 file (Win2k - WinXP)`
+On searching online, found that it is a file used by older versions of windows to keep track of the files that have been deleted and moved to the Recycle Bin.<br>
+Now, we need to get the time, at which the file was deleted, so that we can unrar the `flag.txt.rar` file.
+On researching a bit, I got to know about a tool - [`rifiuti2`](https://github.com/abelcheung/rifiuti2)<br>
+Running the tool on the file `INFO` got the date and time at which the flag file was deleted 
+![rifiuti2](/images/rifiuti2.png)
+Unrared the `flag.txt.rar` file with the password format given in the challenge description and got the flag - 
+![unrar](/images/unrar.png)
