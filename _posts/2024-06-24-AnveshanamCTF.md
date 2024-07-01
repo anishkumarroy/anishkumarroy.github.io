@@ -11,6 +11,36 @@ image: /images/anveshanam.png
 
 ## CLOUD SECURITY
 
+### Sandwich
+**Challenge Description:**
+
+![desc](/images/sandwich_desc.png)
+
+```plaintext
+Docker Image: cyberseciitjammu/sandwich
+```
+In this challenge, we need to recover a deleted file from a docker container.<br>
+I pulled the docker image. 
+![pull](/images/sandwich_pull.png)
+Started the container, but there was nothing in it..
+![run](/images/sandwich_run.png)
+At first I was clueless, but on researching a bit, I got to know about the `dive` tool, with which we can look at the different layers of the image.<br>
+You can install the tool using- `sudo apt-get install dive`
+You can run `dive` as -
+![dive](/images/sandwich_dive.png)
+![rundive](/images/sandwich_diverun.png)
+We can see the different layers in it, and we can also see, on which layer, the `data.txt` file was delete, and in which layer it was created.<br>
+Now, we can use the `docker save` command to save all the layers to an archive, and then get the deleted file from there.
+![layers](/images/sandwich_layers.png)
+![layer1](/images/sandwich_layer1.png)
+![layer2](/images/sandwich_layer2.png)
+![layer3](/images/sandwich_layer3.png)
+Moved to the layer, on which the `data.txt` file was created.
+Found another archive, unzipped it, and got the flag
+![layer4](/images/sandwich_layer4.png)
+![flag](/images/sandwich_flag.png)
+
+
 ### Bucket Breach
 **Challenge Description:**
 
@@ -101,6 +131,23 @@ Checking the source code, found AWS credentials, so configured AWS using those c
 
 Now, for this user, I was able to list the secrets. Found an interesting secret and on getting the secret value, found the flag.
 ![secret](/images/secret_flag.png)
+
+### No_sudo
+**Challenge Description:**
+
+![desc](/images/nosudo_desc.png)
+
+Access the challenge file [here](https://drive.google.com/file/d/1B318PFp5OiuQE444Uf_-sWSTQkIXfv4k/view?usp=sharing)
+
+Imported the VM into virtualbox and fired up my kali machine. 
+I discovered the IP of the given box using the commnd - `sudo arp-scan -l`. Then I SSHed into the machine using the provided credentials.
+I could have done enumeration, but without any 2nd thought just downloaded linpeas in the box by hosting a python server in my kali machine and downloading from there.<br>
+I instantly got a privilege escalation vector in the linpeas output -
+![docker](/images/nosudo_docker.png)
+Here, we can see that the user is a member of the docker group. Users added to the docker group, can run docker without using `sudo`.<br>
+The `flag.txt` file was in the user's home directory. We can start a container with privileged access, and mount the home directory in the container
+![flag](/images/nosudo_flag.png)
+After going to the `/host` directory, the directory where I mounted `anveshanam's` user home directory, I found the flag.
 
 ### Minute-mystery
 **Challenge Description:**
