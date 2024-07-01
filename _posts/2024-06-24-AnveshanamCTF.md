@@ -2,7 +2,7 @@
 title: Anveshanam CTF 2024
 date: 2024-06-24 23:02:30 +0530
 categories: [CTFs]
-tags: [Cloud, Forensics, Rev]
+tags: [Cloud, Forensics, Web, Steganography]
 image: /images/anveshanam.png
 ---
 
@@ -136,6 +136,21 @@ There was nothing else on the webpage. On looking at the cookie, it was base64 e
 Changed the cookie with `hard-web` value, and base64 encoded it. After reloading the page, got the flag.
 ![flag](/images/easy_web_flag.png)
 
+### Eternity
+**Challenge Description:**
+
+![desc](/images/eternity_desc.png)
+
+On going to the challenge link we see- 
+![web](/images/eternity_wait.png)
+On clicking on `Continue Waiting` button, we're redirected to a `/secret-site` endpoint 
+![deny](/images/eternity_deny.png)
+I captured the request to `/secret-site` endpoint using Burpsuite.<br>
+As we can see, that it is revolving around time, and we need to make the time to a very large value to be able to access the page. <br>
+The trick to this challenge was to add a `time` cookie in the request headers.
+On sending a large positive value of time, it didn't work, but on sending a negative value, I got the flag. 
+![flag](/images/eternity_flag.png)
+
 
 ### Newdevblog
 **Challenge Description:**
@@ -188,3 +203,80 @@ Running the tool on the file `INFO` got the date and time at which the flag file
 ![rifiuti2](/images/rifiuti2.png)
 Unrared the `flag.txt.rar` file with the password format given in the challenge description and got the flag - 
 ![unrar](/images/unrar.png)
+
+
+## STEGANOGRAPHY
+
+### Secrets of the Enchanted Forest
+**Challenge Description:**
+
+![desc](/images/forest_desc.png)
+
+You can download the challenge file from [here](https://github.com/anishkumarroy/AnveshanamCTF_files/blob/master/Steganography/Secrets%20of%20the%20Enchanted%20Forest/img1.zip)
+
+Unzipped the `img1.zip` file, and got an `img1.jpeg` file.<br>
+First of all I tried to analyze the image using [`stegsolve`](https://github.com/zardus/ctf-tools/blob/master/stegsolve/install) but didn't find anything interesting.<br>
+Then on using steghide, it was asking for password. Looked at the challenge description carefully, and noticed that the `FOREST` word is capitalized, which might be hinting towards it to be the password.<br>
+Tried the passphrase to extract hidden files using steghide....and yeah!! it worked and hence got the flag.
+![flag](/images/forest_flag.png)
+
+### Convert_it
+**Challenge description:**
+
+![desc](/images/convert_desc.png)
+
+Download the challenge file from [here](https://github.com/anishkumarroy/AnveshanamCTF_files/blob/master/Steganography/convert_it/task.zip)
+
+On unzipping the `task.zip` file, we have another `testdata.zip` file and a whole bunch of EXEs, over there.
+![exes](/images/convert_unzip.png)
+Initially I was trying to analyze the EXEs, and look for any interesting data, but didn't find anything. I moved on to the `testdata.zip` file and it was password protected.<br>
+I used `fcrackzip` tool and luckily it cracked the password.
+I don't know what the EXE files were there for..<br>
+Unzipped `testdata.zip`, got a text file out of it, and then the flag.
+![flag](/images/convert_flag.png)
+
+### Jack_is_waiting
+**Challenge Description:**
+
+![desc](/images/jack_Desc.png)
+
+Access the challenge files [here](https://github.com/anishkumarroy/AnveshanamCTF_files/tree/master/Steganography/jack_is_waiting)
+
+Here, we are given a `user.jpg` file and a zip file. 
+I am not sure what the intented solution was, but again in this case too, I was able to crack the password of the ZIP file just by using `fcrackzip`.<br>
+After that I unzipped the file and got the flag 
+![flag](/images/jack_flag.png)
+
+### Eye Can Learn
+**Challenge description:**
+
+![desc](/images/eye_desc.png)
+
+Access the challenge file [here](https://github.com/anishkumarroy/AnveshanamCTF_files/blob/master/Steganography/Eye%20can%20Learn/audio.gif)
+
+Given a GIF file, I first splitted it into frames using a website - <https://ezgif.com/split><br>
+I saved all of them, and joined them one by one using canva.
+There were a total 5 QR codes. You can check out those QR codes [here](https://github.com/anishkumarroy/AnveshanamCTF_files/blob/master/Steganography/Eye%20can%20Learn/qr_codes.pdf)<br>
+Scanned the QR codes one by one, and found this format in every QR code - `www.<a_part_of_the_flag_here>`, like - `www.4dff619e`. I instantly understood, that we need to join those flag parts, and moreover, the flags in this CTF were of UUID format, so I was already able to understand, what will the first (8 chars in length) and last part (the one with 12 characters in length), I just needed to figure out the order of remaining 3 parts, which will make a total of 6 combinations.<br>
+So figured out these possible combinations - 
+```plaintext
+flag{4dff619e-c743-930d-439f-0df6a09d2618}
+flag{4dff619e-c743-439f-930d-0df6a09d2618}
+flag{4dff619e-930d-c743-439f-0df6a09d2618}
+flag{4dff619e-930d-439f-c743-0df6a09d2618}
+flag{4dff619e-439f-c743-930d-0df6a09d2618}
+flag{4dff619e-439f-930d-c743-0df6a09d2618}
+```
+Checked them one by one, and one of them worked out.
+
+
+## REVERSING
+
+### Deja Vu
+**Challenge Description:**
+
+![desc](/images/dejavu_Desc.png)
+
+Access the challenge file [here](https://github.com/anishkumarroy/AnveshanamCTF_files/blob/master/reversing/D%C3%A9j%C3%A0%20vu/user.out)<br>
+I have created a video explaining this challenge, you can check it out [here](https://www.youtube.com/watch?v=GTsTqgYdehw)
+
