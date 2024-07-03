@@ -8,8 +8,8 @@ title: Notes
 {% assign df_strftime_m = site.data.locales[lang].df.archives.strftime | default: '/ %m' %}
 {% assign df_dayjs_m = site.data.locales[lang].df.archives.dayjs | default: '/ MM' %}
 
-<p>Would soon start adding notes here....</p>
-<p>Access my previous writeups<a href="https://an0nyr0y.notion.site/Cybersecurity-Writeups-d60b1c7a51cc4dc4bffe995a57e34bf3?pvs=4"> here</a></p>
+<!-- <p>Would soon start adding notes here....</p> -->
+
 
 <div class="pl-xl-3">
   {% for note in site.notes reversed %}
@@ -30,13 +30,13 @@ title: Notes
       <span class="date month small text-muted ms-1" data-ts="{{ ts }}" data-df="{{ df_dayjs_m }}">
         {{ note.date | date: df_strftime_m }}
       </span>
-      <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+      &nbsp;&nbsp;<a href="{{ note.url | relative_url }}">{{ note.title }}</a>
     </li>
 
     {% if forloop.last %}</ul>{% endif %}
   {% endfor %}
 </div>
-
+<p>Access my previous writeups <a href="https://an0nyr0y.notion.site/Cybersecurity-Writeups-d60b1c7a51cc4dc4bffe995a57e34bf3?pvs=4"> here</a></p>
 
 
 
