@@ -183,6 +183,31 @@ There was nothing else on the webpage. On looking at the cookie, it was base64 e
 Changed the cookie with `hard-web` value, and base64 encoded it. After reloading the page, got the flag.
 ![flag](/images/easy_web_flag.png)
 
+### Rapid_rush
+**Challenge Description:**
+
+![desc](/images/rapid_desc.png)
+
+On, opening the webpage, we have some options over there.
+On trying to buy the flag -
+![buy](/images/rapid_buyflag.png)
+We can see, that it says, we need 401 more to buy the flag.<br>
+Checking the current balance, we have an amount of 5000 at present.
+![buy](/images/rapid_curbalance.png)
+On checking the vouchers, we have four of them.
+![buy](/images/rapid_vouchers.png)
+On applying one of the vouchers, our amount is increased by 100.
+![recharge](/images/rapid_recharge.png)
+![success](/images/rapid_success.png)
+So, even if we apply all the vouchers, we would only have an amount of 5400, i.e. 1 less than the required amount. As the challenge's name is `Rapid_rush` it hints towards making requests fast, i.e. a race condition vulnerability.
+I captured one of the recharge requests using burpsuite, created a tab group in repeater, and put two of the same requests in the tab group, then used last-byte sync attack (as the server supports HTTP/1.1).<br>
+Doing the above, I was successfully able to increase the amount by 200 more, using a single voucher code
+![increased](/images/rapid_increased.png)
+Then I used the other two vouchers, simply, which increased the price to 5500.
+![price](/images/rapid_pricemore.png)
+Then I bought the flag.
+![flag](/images/rapid_flag.png)
+
 ### Eternity
 **Challenge Description:**
 
