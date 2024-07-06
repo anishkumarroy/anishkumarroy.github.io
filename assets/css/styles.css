@@ -1,0 +1,7 @@
+.zoom-badge {
+    transition: transform 0.3s;
+  }
+  
+  .zoom-badge:hover {
+    transform: scale(1.2); /* Adjust the scale as needed */
+  }

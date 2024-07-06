@@ -8,3 +8,14 @@
 ';
 
 /* append your custom style below */
+
+/* Custom hover effect for badges in about.md */
+.badge {
+  margin-right: 0.02px;
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.badge:hover {
+  transform: scale(1.2);
+}

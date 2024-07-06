@@ -229,3 +229,7 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+
+includes:
+  - assets/css/jekyll-theme-chirpy.scss
