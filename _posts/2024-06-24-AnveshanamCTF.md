@@ -352,3 +352,8 @@ Checked them one by one, and one of them worked out.
 Access the challenge file [here](https://github.com/anishkumarroy/AnveshanamCTF_files/blob/master/reversing/D%C3%A9j%C3%A0%20vu/user.out)<br>
 I have created a video explaining this challenge, you can check it out [here](https://www.youtube.com/watch?v=GTsTqgYdehw)
 
+
+
+<h1 style="color: yellow;">Official Writeups</h1>
+
+[Anveshanam CTF 2024 Writeups](https://drive.google.com/file/d/1sLi6GxN7glZEsrqZ5KoHma-Di4-Uv-HK/view)
