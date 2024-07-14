@@ -31,7 +31,7 @@ Let's dive into some examples too understand it better.
 You can acess the challenge file [here](https://github.com/anishkumarroy/AnveshanamCTF_files/blob/master/reversing/rezzz/main)<br>
 We are given a challenge that says -
 
-![desc](/images/rezz_desc.png/)
+![desc](/images/rezz_desc.png)
 
 On opening the binary in `Ghidra`
 ![check](/images/rezz_check.png)
