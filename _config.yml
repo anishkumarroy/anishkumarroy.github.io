@@ -230,6 +230,9 @@ jekyll-archives:
     tag: /tags/:name/
     category: /categories/:name/
 
+# Additional settings by me 
 
 includes:
   - assets/css/jekyll-theme-chirpy.scss
+plugins:
+  - jemoji
