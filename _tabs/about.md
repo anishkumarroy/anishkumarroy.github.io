@@ -39,8 +39,8 @@ Join me as I explore and share insights into how we can protect our digital worl
 <br>
 
 <div style="text-align: center;">
-<a href="https://github.com/anishkumarroy"><img src="https://github-readme-stats.vercel.app/api?username=anishkumarroy&show_icons=true&include_all_commits=true&hide=contribs&theme=dracula" alt="Github readme stat" class="badge"></a><br>
-<a href="https://github.com/anishkumarroy" target="_blank"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=anishkumarroy&layout=compact&exclude_repo=Social-Media-App&theme=dracula" alt="Github language stat" class="badge"></a><br>
+<!-- <a href="https://github.com/anishkumarroy"><img src="https://github-readme-stats.vercel.app/api?username=anishkumarroy&show_icons=true&include_all_commits=true&hide=contribs&theme=dracula" alt="Github readme stat" class="badge"></a><br>
+<a href="https://github.com/anishkumarroy" target="_blank"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=anishkumarroy&layout=compact&exclude_repo=Social-Media-App&theme=dracula" alt="Github language stat" class="badge"></a><br> -->
 <img src="https://tryhackme-badges.s3.amazonaws.com/An0nyR0y.png" alt="TryHackMe badge" style="transform: scale(1.2)" class="badge">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <img src="https://www.hackthebox.eu/badge/image/657181" alt="HackTheBox badge" style="transform: scale(1.3)" class="badge">
 </div>
