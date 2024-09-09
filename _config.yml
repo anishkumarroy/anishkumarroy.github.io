@@ -236,3 +236,7 @@ includes:
   - assets/css/jekyll-theme-chirpy.scss
 plugins:
   - jemoji
+
+
+include:
+  - assets/js/dist/app.min.js
