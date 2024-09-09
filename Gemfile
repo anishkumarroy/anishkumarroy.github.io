@@ -6,5 +6,5 @@ gem "jekyll-theme-chirpy", "~> 7.0", ">= 7.0.1"
 gem "jemoji" 
 
 group :test do
-  gem "html-proofer", "~> 5.0"
+  gem "html-proofer"
 end
