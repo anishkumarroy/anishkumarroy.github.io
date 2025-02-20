@@ -1,11 +1,5 @@
----
----
 
-@use 'main
-{%- if jekyll.environment == 'production' -%}
-  .bundle
-{%- endif -%}
-';
+@use 'main';
 
 /* append your custom style below */
 
@@ -19,3 +13,34 @@
 .badge:hover {
   transform: scale(1.2);
 }
+
+/* Jekyll environment check */
+{% if jekyll.environment == 'production' %}
+  .bundle {
+    // Add your production-specific styles here
+  }
+{% endif %}
+
+
+
+// ---
+// ---
+
+// @use 'main
+// {%- if jekyll.environment == 'production' -%}
+//   .bundle
+// {%- endif -%}
+// ';
+
+// /* append your custom style below */
+
+// /* Custom hover effect for badges in about.md */
+// .badge {
+//   margin-right: 0.02px;
+//   display: inline-block;
+//   transition: transform 0.3s ease-in-out;
+// }
+
+// .badge:hover {
+//   transform: scale(1.2);
+// }
