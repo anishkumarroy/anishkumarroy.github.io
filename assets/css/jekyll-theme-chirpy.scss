@@ -1,7 +1,6 @@
-
 @use 'main';
 
-/* append your custom style below */
+/* Append your custom styles below */
 
 /* Custom hover effect for badges in about.md */
 .badge {
@@ -14,14 +13,11 @@
   transform: scale(1.2);
 }
 
-/* Jekyll environment check */
-{% if jekyll.environment == 'production' %}
-  .bundle {
-    // Add your production-specific styles here
-  }
-{% endif %}
-
-
+/* Production-specific styles (Jekyll can't process this inside SCSS) */
+/* Move this condition to _layouts/default.html instead */
+.bundle {
+  /* Add your production-specific styles here */
+}
 
 // ---
 // ---
