@@ -55,7 +55,7 @@ We can see that there is a bucket - `question1bucket`, and on listing the files 
 
 I copied the files into my local system.<br>
 On opening the `final_flag.html` page, I saw some binary text at the bottom of the page -
-![](/images/binary)
+![](/images/binary.png)
 
 Went directly to [cyberchef](https://gchq.github.io/CyberChef/) to decode the binary and got the flag
 
