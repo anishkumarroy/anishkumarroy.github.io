@@ -74,3 +74,36 @@ We need to do a recursive search
 ![recurse](/images/ps_recursivesearch.png)
 
 Hence, the password for `century8` is `7points`
+
+
+## Century 8-9
+We need to get the number of unique words inside `unique.txt` file
+![unique count](/images/ps_century8count.png)
+
+Intead of using `cat`, we can also use `get-content`.<br>
+Hence the password for `century9` is `696`
+
+## Century 9-10
+![century9](/images/ps_century9file.png)
+
+We can see, there are many words inside the .txt file, separated by spaces.<br>
+We can split the words and get the word at index 160 (i.e. the 161st word)
+![split](/images/ps_splitting.png)
+![161 word](/images/ps_century9split.png)
+
+Hence the password for `century10` will be `pierid`
+
+## Century 10-11
+To list all the service we can do -
+![services](/images/ps_services.png)
+
+We need the `Windows update service` which is named as `wuauserv`. So, we will filter for that name.
+
+![all objects](/images/ps_century10services.png)
+
+Now, out of that we only need the `Description` object
+![raw description](/images/ps_rawdescription.png)
+
+Now, we need to get the 10th and 8th words from the description, i.e. index 9 and 7. We can do that using the `Select-object` command with the `-Index` parameter, as we did in the earlier challenge.
+![index](/images/ps_index.png)
+Hence the 10th word and 8th word are `windows` and `updates` respectively and the name of the file is `110`. So the final password for `century11` would be `windowsupdates110`
