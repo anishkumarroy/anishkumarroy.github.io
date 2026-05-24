@@ -15,6 +15,7 @@ The password for century1 is `century1`. That we can find in the slack channel
 
 ## Century 1-2
 Look for the build version of powershell 
+
 ![psversioninfo](/images/ps_psversion.png)
 
 Hence password for `century2` is `10.0.14393.7870`
