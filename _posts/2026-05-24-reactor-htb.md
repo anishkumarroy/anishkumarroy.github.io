@@ -1,6 +1,6 @@
 ---
 title: Reactor - HackTheBox Writeup
-date: 2026-09-24 16:00:00 +0530
+date: 2026-05-24 16:00:00 +0530
 categories: [HackTheBox]
 tags: [Linux, HTB]
 image: /images/reactor.png
@@ -8,7 +8,9 @@ image: /images/reactor.png
 
 > It is an easy HTB machine featuring a framework-based RCE and privilege escalation via an exposed root-owned debugging interface.
 
-Starting with Nmap scan
+# ------------------------ PROTECTED CONTENT -----------------------------
+
+<!-- Starting with Nmap scan
 ```
 PORT     STATE SERVICE REASON         VERSION
 22/tcp   open  ssh     syn-ack ttl 63 OpenSSH 9.6p1 Ubuntu 3ubuntu13.16 (Ubuntu Linux; protocol 2.0)
@@ -92,4 +94,4 @@ We can do SSH port forwarding to interact with the port using Chrome Devtools of
 ![getting root](/images/reactor_getting_root1.png)
 ![getting root](/images/reactor_getting_root2.png)
 
-Got reverse shell and hence the root flag.
+Got reverse shell and hence the root flag. -->
