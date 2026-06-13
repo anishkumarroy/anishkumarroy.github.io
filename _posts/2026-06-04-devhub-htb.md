@@ -8,9 +8,8 @@ image: /images/devhub_icon.png
 
 >This medium-rated HTB machine begins with an RCE vulnerability in MCP, followed by privilege escalation through privileged processes. The final step involves exploiting a tool-calling function of MCP to obtain the root user's SSH key and gain full system access.
 
-# ------------------------ PROTECTED CONTENT -----------------------------
 
-<!-- Starting with Nmapscan
+Starting with Nmapscan
 
 ```plaintext
 22/tcp open  ssh     syn-ack ttl 63 OpenSSH 8.9p1 Ubuntu 3ubuntu0.15 (Ubuntu Linux; protocol 2.0)
@@ -93,4 +92,4 @@ We can now make a curl requested with the required headers to get the SSH key
 
 Got Root access 
 
-![Root](/images/devhub_rootaccess.png) -->
+![Root](/images/devhub_rootaccess.png)
